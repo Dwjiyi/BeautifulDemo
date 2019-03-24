@@ -1,0 +1,20 @@
+PODS:
+  - SnapKit (4.2.0)
+  - SwiftGen (6.0.2)
+
+DEPENDENCIES:
+  - SnapKit
+  - SwiftGen
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SnapKit
+    - SwiftGen
+
+SPEC CHECKSUMS:
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SwiftGen: e5b047067aa84082826a0c4f1c4c2ddc95bcf74c
+
+PODFILE CHECKSUM: ba7557170c48b888172650c11113b37cd5d01591
+
+COCOAPODS: 1.5.3
