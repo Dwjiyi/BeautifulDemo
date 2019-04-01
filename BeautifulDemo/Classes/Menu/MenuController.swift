@@ -34,7 +34,7 @@ class MenuController: UIViewController {
         }
     }
 
-    //MARK: --------------- Property -------------------
+    //MARK: -- Property  
     lazy fileprivate var mainTableView: UITableView = {
         let mainTableView = UITableView()
         mainTableView.backgroundColor = UIColor.clear

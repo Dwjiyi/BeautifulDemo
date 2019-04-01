@@ -12,11 +12,17 @@ class NavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationBar.isHidden = true
+        navigationBar.isHidden = true
+        interactivePopGestureRecognizer?.delegate = self
+//        delegate = self
     }
-    
-    
-    
-
- 
 }
+
+extension NavigationController: UIGestureRecognizerDelegate {}
+//
+//extension NavigationController: UINavigationControllerDelegate {
+//    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+//        // 设置支持右滑返回手势
+//        interactivePopGestureRecognizer?.isEnabled = true
+//    }
+//}

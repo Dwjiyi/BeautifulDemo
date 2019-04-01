@@ -12,44 +12,21 @@ import SnapKit
 class MenuHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         addSubview(iconView)
         addSubview(nameLabel)
         addSubview(typeLabel)
         addSubview(loginButton)
-        
-        iconView.snp.makeConstraints { (make) in
-            make.left.equalTo(self).offset(25)
-            make.top.equalTo(self).offset(30)
-            make.width.equalTo(50)
-            make.height.equalTo(50)
-        }
-        
-        nameLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(iconView.snp.right).offset(15)
-            make.top.equalTo(iconView.snp.top).offset(5)
-            make.right.equalTo(self)
-            make.height.equalTo(20)
-        }
-        
-        typeLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(nameLabel.snp.left)
-            make.top.equalTo(nameLabel.snp.bottom).offset(5)
-        }
-        
-        loginButton.snp.makeConstraints { (make) in
-            make.left.equalTo(iconView.snp.right).offset(15)
-            make.centerY.equalTo(iconView.snp.centerY)
-            make.height.equalTo(20)
-        }
-        
-        configUI()
+
+        setupLayout()
+        setupModel()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: ------------- Propertys ----------------------
+    //MARK: -- Property
     /// 头像
     fileprivate lazy var iconView: UIImageView = {
         var iconView = UIImageView()
@@ -86,15 +63,40 @@ class MenuHeaderView: UIView {
 
 }
 
-//MARK: ----------------Private Methods--------------------
+//MARK: -- Private Methods
 extension MenuHeaderView {
+    func setupLayout() {
+        iconView.snp.makeConstraints { (make) in
+            make.left.equalTo(self).offset(25)
+            make.top.equalTo(self).offset(30)
+            make.width.equalTo(50)
+            make.height.equalTo(50)
+        }
+        
+        nameLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(iconView.snp.right).offset(15)
+            make.top.equalTo(iconView.snp.top).offset(5)
+            make.right.equalTo(self)
+            make.height.equalTo(20)
+        }
+        
+        typeLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(nameLabel.snp.left)
+            make.top.equalTo(nameLabel.snp.bottom).offset(5)
+        }
+        
+        loginButton.snp.makeConstraints { (make) in
+            make.left.equalTo(iconView.snp.right).offset(15)
+            make.centerY.equalTo(iconView.snp.centerY)
+            make.height.equalTo(20)
+        }
+    }
     
-    func configUI() {
+    func setupModel() {
         loginButton.isHidden = true
         iconView.image = Asset.detailPortraitDefault.image
         nameLabel.text = "wy"
         typeLabel.text = "微博美友"
-        
     }
-    
+
 }

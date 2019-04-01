@@ -10,7 +10,7 @@ import UIKit
 
 class MainController: UIViewController {
  
-    //MARK: --------------------- Property -------------------------
+    //MARK: -- Property
     // 菜单控制器
     fileprivate var menuVC: MenuController!
     // 每日最美，限免推荐，文章专栏控制器
@@ -19,7 +19,6 @@ class MainController: UIViewController {
     fileprivate var currentVC: UIViewController!
     // 透明图层
     fileprivate var coverView: UIWindow!
-
     // 菜单栏侧滑最大宽度
     fileprivate let menuMaxWidth: CGFloat = UIConstant.SCREEN_WIDTH * 0.8
     
@@ -32,9 +31,8 @@ class MainController: UIViewController {
 }
 
 
-//MARK: --------------------- Private Methods ----------------------
+//MARK: -- Private Methods
 extension MainController {
-    
     fileprivate func setupChildController() {
         menuVC = MenuController()
         menuVC.view.frame = CGRect(x: 0, y: 0, width: menuMaxWidth, height: UIConstant.SCREEN_HEIGHT)
@@ -72,11 +70,19 @@ extension MainController {
      */
     @objc fileprivate func menuDidPan(_ pan: UIPanGestureRecognizer) {
         let point = pan.translation(in: pan.view)
+        print(point.x)
         if pan.state == .cancelled || pan.state == .ended {
-            
+            menuHiddenAnimation()
         } else {
             // 正在拖拽
-            
+            currentVC.view.x = menuMaxWidth + point.x
+            if currentVC.view.x <= 0 {
+                currentVC.view.x = 0
+                coverView.isHidden = true
+            } else if currentVC.view.x >= menuMaxWidth {
+                currentVC.view.x = menuMaxWidth
+                coverView.isHidden = false
+            }
         }
     }
     
@@ -84,11 +90,10 @@ extension MainController {
      隐藏菜单栏
      */
     @objc fileprivate func menuHiddenAnimation() {
-        coverView.isHidden = true
         UIView.animate(withDuration: 0.3, animations: {
             self.currentVC.view.frame.origin.x = 0
         }) { (finish) in
-
+            self.coverView.isHidden = true
         }
     }
 }
